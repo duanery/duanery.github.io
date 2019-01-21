@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hello World - undefined
+          kallsyms - undefined
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2018/12/25/hello-world/">
+    <link rel="canonical" href="http://yoursite.com/2019/01/21/kallsyms/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -87,11 +87,11 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>Hello World</h1>
+                        <h1>kallsyms</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by John Doe on
-                            2018-12-25
+                            2019-01-21
                         </span>
                     </div>
                 
@@ -184,26 +184,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+                <h1 id="kallsyms"><a href="#kallsyms" class="headerlink" title="kallsyms"></a>kallsyms</h1><p>kallsyms是通过在内核编译阶段把内核符号导出后再转换为一个.S汇编文件再链接到vmlinux<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> step 1</span><br><span class="line">vmlinux_link "" .tmp_vmlinux1</span><br><span class="line"><span class="meta">$</span>&#123;NM&#125; -n .tmp_vmlinux1 | scripts/kallsyms $&#123;kallsymopt&#125; &gt; .tmp_kallsyms1.S</span><br><span class="line"><span class="meta">$</span>&#123;CC&#125; $&#123;aflags&#125; -c -o .tmp_kallsyms1.o .tmp_kallsyms1.S</span><br><span class="line"><span class="meta">#</span> step 2</span><br><span class="line">vmlinux_link .tmp_kallsyms1.o .tmp_vmlinux2</span><br><span class="line"><span class="meta">$</span>&#123;NM&#125; -n .tmp_vmlinux2 | scripts/kallsyms $&#123;kallsymopt&#125; &gt; .tmp_kallsyms2.S</span><br><span class="line"><span class="meta">$</span>&#123;CC&#125; $&#123;aflags&#125; -c -o .tmp_kallsyms2.o .tmp_kallsyms2.S</span><br><span class="line"><span class="meta">#</span>step 3</span><br><span class="line">vmlinux_link .tmp_kallsyms2.o vmlinux</span><br></pre></td></tr></table></figure></p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>  kallsyms</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><h3 id="proc"><a href="#proc" class="headerlink" title="proc"></a>proc</h3><h3 id="EXPORT-SYMBOL"><a href="#EXPORT-SYMBOL" class="headerlink" title="EXPORT_SYMBOL"></a>EXPORT_SYMBOL</h3><h3 id="内部"><a href="#内部" class="headerlink" title="内部"></a>内部</h3>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/12/26/从零开始学习Linux/" data-toggle="tooltip" data-placement="top" title="从零开始学习Linux">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/2018/12/26/从零开始学习Linux/" data-toggle="tooltip" data-placement="top" title="从零开始学习Linux">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
